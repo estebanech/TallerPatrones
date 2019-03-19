@@ -1,11 +1,19 @@
 from TipoItemDAO import TipoItemDAO 
+from TipoItem import TipoItem
 class Item:
 
     def __init__ (self, idtipo, descripcion, valor, id = 0):
         self.__id = id
+        self.__idtipo = idtipo
         self.__descripcion = descripcion
         self.__valor = valor
-        self.__idtipo = idtipo
+    
+    def __str__(self):
+        tipoDAO = TipoItemDAO()
+        tipo = tipoDAO.gettipoitembyid(self.__idtipo).getdescripcion()
+        struct ="Id = %(Id)d, TipoItem = %(tipo)s, Descripcion = %(descripcion)s, Valor = %(valor)s"
+        data = {'Id':self.__id, 'tipo': tipo, 'descripcion': self.__descripcion, 'valor':self.__valor}
+        return struct % data
     
     def getid(self):
         return self.__id

@@ -9,6 +9,11 @@ class Cliente:
         self.__FNacimiento = FN
         self.__ECivil = EC
     
+    def __str__(self):
+        struct ="Id = %(Id)d, Nombre = %(nombre)s, Apellidos = %(apellidos)s,Genero = %(genero)s, Nacimiento = %(FN)s, EstadoCivil = %(EC)s"
+        data = {'Id':self.__id, 'nombre': self.__nombre, 'apellidos': self.__apellidos, 'genero':self.__genero,'FN':self.__FNacimiento, 'EC':self.__ECivil}
+        return struct % data
+    
     def getid(self):
         return self.__id
     def getnombre(self):

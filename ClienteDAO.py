@@ -24,7 +24,11 @@ class ClienteDAO:
                 temp[4] = '{0:%Y-%m-%d}'.format(temp[4])
                 panda = pd.DataFrame([temp], columns= ["id", "nombre", "apellidos", "genero", "fecha nacimiento", "estado civil"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            clientes = []
+            for index, row in fat_panda.iterrows():
+                cliente = Cliente(row["nombre"], row["apellidos"],row["genero"], row["fecha nacimiento"], row["estado civil"],row["id"])
+                clientes.append(cliente)
+            return clientes
         except:
             raise Exception("No se pudo extraer los clientes")
     def getclientebyid(self,id):
@@ -44,7 +48,11 @@ class ClienteDAO:
                 temp[4] = '{0:%Y-%m-%d}'.format(temp[4])
                 panda = pd.DataFrame([temp], columns= ["id", "nombre", "apellidos", "genero", "fecha nacimiento", "estado civil"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            clientes = []
+            for index, row in fat_panda.iterrows():
+                cliente = Cliente(row["nombre"], row["apellidos"],row["genero"], row["fecha nacimiento"], row["estado civil"],row["id"])
+                clientes.append(cliente)
+            return clientes[0]
         except:
             raise Exception("No se pudo extraer el cliente")
     def updatecliente(self,cliente):
@@ -79,6 +87,4 @@ class ClienteDAO:
         except:
             self.DB.rollback()
             raise Exception("No se pudo destruir el cliente")
-
-
 

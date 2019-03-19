@@ -21,7 +21,11 @@ class ItemDAO:
                 temp = list(row)
                 panda = pd.DataFrame([temp],columns=["id", "idtipo", "descripcion", "valor"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            items = []
+            for index, row in fat_panda.iterrows():
+                item = Item(row["idtipo"], row["descripcion"],row["valor"],row["id"])
+                items.append(item)
+            return items
         except:
             raise Exception("No se pudo extraer los items")
     def getitemsbyid(self,id):
@@ -38,7 +42,11 @@ class ItemDAO:
                 temp = list(row)
                 panda = pd.DataFrame([temp],columns=["id", "idtipo", "descripcion", "valor"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            items = []
+            for index, row in fat_panda.iterrows():
+                item = Item(row["idtipo"], row["descripcion"],row["valor"],row["id"])
+                items.append(item)
+            return items[0]
         except:
             raise Exception("No se pudo extraer el item")
     def updateitem(self,item):

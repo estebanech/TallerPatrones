@@ -20,7 +20,11 @@ class TipoItemDAO:
                 temp = list(row)
                 panda = pd.DataFrame([temp], columns=["id", "descripcion"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            tipos = []
+            for index, row in fat_panda.iterrows():
+                tipoitem = TipoItem(row["descripcion"],row["id"])
+                tipos.append(tipoitem)
+            return tipos
         except:
             raise Exception("No se pudo extraer los tipoitem")
             
@@ -36,7 +40,11 @@ class TipoItemDAO:
                 temp = list(row)
                 panda = pd.DataFrame([temp], columns=["id", "descripcion"])
                 fat_panda = pd.concat([fat_panda,panda], ignore_index=True)
-            return fat_panda
+            tipos = []
+            for index, row in fat_panda.iterrows():
+                tipoitem = TipoItem(row["descripcion"],row["id"])
+                tipos.append(tipoitem)
+            return tipos[0]
         except:
             raise Exception("No se pudo extraer el tipoitem")
 
@@ -73,5 +81,6 @@ class TipoItemDAO:
         except:
             self.DB.rollback()
             raise Exception("No se pudo destuir el tipoitem")
+
 
 
