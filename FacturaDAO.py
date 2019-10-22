@@ -149,3 +149,4 @@ class FacturaDAO:
             self.DB.rollback()
             raise Exception("No se pudo destruir el factura")
 
+
